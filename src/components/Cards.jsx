@@ -64,7 +64,7 @@ const Cards = (props) => {
         return (
           <Row className="d-flex flex-column transitionHover" key={song.id}>
             <Col style={{ cursor: "pointer" }}>
-              <img className="img-fluid" src={song.album.cover_medium} alt="track" />
+              <img className="img-fluid " src={song.album.cover_medium} alt="track" />
             </Col>
 
             <p className="m-0">{song.title}</p>
