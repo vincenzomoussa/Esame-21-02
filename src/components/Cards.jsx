@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { HeartFill } from "react-bootstrap-icons";
 import { addToFavourites, removeFromFavourites } from "../redux/actions/favouritesAction";
 
-const CardComponent = (props) => {
+const Cards = (props) => {
   const URL = "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
   const [album, setAlbum] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
   const favourites = useSelector((state) => state.favourites.favouriteSongs);
@@ -23,6 +24,7 @@ const CardComponent = (props) => {
   };
 
   const fetchAlbums = (artist) => {
+    setIsLoading(true);
     fetch(URL + artist, {
       headers: {
         q: artist,
@@ -37,6 +39,7 @@ const CardComponent = (props) => {
       })
       .then(({ data }) => {
         setAlbum(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log("error", err);
@@ -50,6 +53,11 @@ const CardComponent = (props) => {
 
   return (
     <>
+      {isLoading && (
+        <Spinner animation="border" role="status" variant="primary" className="d-block mx-auto">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      )}
       {album.slice(0, 4).map((song) => {
         const isFavourite = favourites.find((singleSong) => singleSong.id === song.id) !== undefined;
 
@@ -57,20 +65,19 @@ const CardComponent = (props) => {
           <Row className="d-flex flex-column" key={song.id}>
             <Col style={{ cursor: "pointer" }}>
               <img className="img-fluid" src={song.album.cover_medium} alt="track" />
-              <p id="artistaEbrano">
-                {song.title}
-                <br />
-                {song.artist.name}
-              </p>
             </Col>
 
-            <Col>
+            <p className="m-0">{song.title}</p>
+            <Col className="d-flex gap-3 align-items-center justify-content-between">
+              <p>{song.artist.name}</p>
+
               <HeartFill
+                className="me-auto"
                 style={{
                   cursor: "pointer",
                   fill: isFavourite ? "white" : "transparent",
                   stroke: "white",
-                  strokeWidth: 2,
+                  strokeWidth: 1,
                 }}
                 viewBox="-1 0 18 16"
                 onClick={() => {
@@ -85,4 +92,4 @@ const CardComponent = (props) => {
   );
 };
 
-export default CardComponent;
+export default Cards;

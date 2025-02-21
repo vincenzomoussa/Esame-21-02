@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { HeartFill } from "react-bootstrap-icons";
 import { addToFavourites, removeFromFavourites } from "../redux/actions/favouritesAction";
+import NavBar from "./NavBar";
 
 const Favourites = () => {
   const favourites = useSelector((state) => state.favourites.favouriteSongs);
@@ -22,15 +23,7 @@ const Favourites = () => {
       <Row>
         <Sidebar />
         <Col className="col-12 col-md-9 offset-md-3 mainPage">
-          <Row>
-            <Col className="col-9 col-lg-11 mainLinks d-none d-md-flex">
-              <a href="#">TRENDING</a>
-              <a href="#">PODCAST</a>
-              <a href="#">MOODS AND GENRES</a>
-              <a href="#">NEW RELEASES</a>
-              <a href="#">DISCOVER</a>
-            </Col>
-          </Row>
+          <NavBar />
           <Row>
             <Col className="col-10">
               <div id="rock">
@@ -40,27 +33,30 @@ const Favourites = () => {
                   id="favouriteSection"
                 >
                   {favourites.map((song) => (
-                    <Col key={song.id} style={{ cursor: "pointer" }} className="mb-3">
-                      <img className="img-fluid" src={song.album.cover_medium} alt="track" />
+                    <Row className="d-flex flex-column mb-3" key={song.id}>
+                      <Col style={{ cursor: "pointer" }}>
+                        <img className="img-fluid" src={song.album.cover_medium} alt="track" />
+                      </Col>
 
-                      <p id="artistaEbrano">
-                        {song.title}
-                        <br />
-                        {song.artist.name}
-                      </p>
-                      <HeartFill
-                        style={{
-                          cursor: "pointer",
-                          fill: "white",
-                          stroke: "white",
-                          strokeWidth: 2,
-                        }}
-                        viewBox="-1 0 18 16"
-                        onClick={() => {
-                          handleClick(song);
-                        }}
-                      />
-                    </Col>
+                      <p className="m-0">{song.title}</p>
+                      <Col className="d-flex gap-3 align-items-center justify-content-between">
+                        <p>{song.artist.name}</p>
+
+                        <HeartFill
+                          className="me-auto"
+                          style={{
+                            cursor: "pointer",
+                            fill: "white",
+                            stroke: "white",
+                            strokeWidth: 1,
+                          }}
+                          viewBox="-1 0 18 16"
+                          onClick={() => {
+                            handleClick(song);
+                          }}
+                        />
+                      </Col>
+                    </Row>
                   ))}
                 </Row>
               </div>
