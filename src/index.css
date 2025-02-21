@@ -175,3 +175,7 @@ ul {
 #artistaEbrano {
   font-size: 11px;
 }
+
+#searchResult {
+  margin-left: -150px;
+}

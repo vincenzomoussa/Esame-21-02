@@ -45,6 +45,7 @@ const CardComponent = (props) => {
 
   useEffect(() => {
     fetchAlbums(props.artist);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
