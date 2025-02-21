@@ -62,7 +62,7 @@ const Cards = (props) => {
         const isFavourite = favourites.find((singleSong) => singleSong.id === song.id) !== undefined;
 
         return (
-          <Row className="d-flex flex-column" key={song.id}>
+          <Row className="d-flex flex-column transitionHover" key={song.id}>
             <Col style={{ cursor: "pointer" }}>
               <img className="img-fluid" src={song.album.cover_medium} alt="track" />
             </Col>

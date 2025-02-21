@@ -3,7 +3,6 @@ body {
   background: linear-gradient(90deg, rgb(63, 86, 119) 0%, rgba(33, 44, 61, 1) 42%, rgb(15, 21, 29) 100%);
 }
 
-/*SIDEBAR SECTION*/
 .navbar.fixed-left {
   position: fixed;
   top: 0;
@@ -24,6 +23,7 @@ body {
 
 .navbar.fixed-left .navbar-collapse .navbar-nav a:hover {
   color: white !important;
+  transition: 0.3s;
 }
 
 .navbar.fixed-left .navbar-brand {
@@ -64,6 +64,7 @@ ul {
   color: white;
   background-color: rgb(60, 211, 60);
   border: 1px solid rgb(60, 211, 60);
+  transition: 0.3s;
 }
 
 .login-btn {
@@ -77,10 +78,12 @@ ul {
 
 .login-btn:hover {
   color: black;
-  background-color: white;
+  background-color: rgb(60, 211, 60);
+  border: 1px solid rgb(60, 211, 60);
+  transition: 0.3s;
 }
 
-@media screen and (max-width: 936px) {
+@media screen and (max-width: 991px) {
   #sidebar {
     display: none;
   }
@@ -108,9 +111,9 @@ ul {
   filter: brightness(60%);
 }
 
-.playerControls a:hover {
-  filter: brightness(80%);
-  color: #282828 !important;
+.playerControls a img:hover {
+  filter: brightness(100%);
+  transition: 0.3s;
 }
 
 .progress {
@@ -178,4 +181,10 @@ ul {
 
 #searchResult {
   margin-left: -150px;
+}
+
+.transitionHover:hover {
+  transform: scale(1.1);
+  filter: brightness(100%);
+  transition: transform 0.1s ease-in-out;
 }

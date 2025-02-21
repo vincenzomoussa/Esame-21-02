@@ -33,7 +33,7 @@ const Favourites = () => {
                   id="favouriteSection"
                 >
                   {favourites.map((song) => (
-                    <Row className="d-flex flex-column mb-3" key={song.id}>
+                    <Row className="d-flex flex-column mb-3 transitionHover" key={song.id}>
                       <Col style={{ cursor: "pointer" }}>
                         <img className="img-fluid" src={song.album.cover_medium} alt="track" />
                       </Col>

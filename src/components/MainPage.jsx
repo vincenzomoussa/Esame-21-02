@@ -42,7 +42,7 @@ const MainPage = () => {
                       const isFavourite = favourites.find((singleSong) => singleSong.id === song.id) !== undefined;
 
                       return (
-                        <Row className="d-flex flex-column mb-5" key={song.id}>
+                        <Row className="d-flex flex-column mb-5 transitionHover" key={song.id}>
                           {isLoading && (
                             <Spinner animation="border" role="status" variant="primary" className="d-block mx-auto">
                               <span className="visually-hidden">Loading...</span>
