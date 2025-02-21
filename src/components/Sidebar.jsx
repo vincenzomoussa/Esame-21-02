@@ -1,9 +1,19 @@
-import { Button, Container, Form, InputGroup, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Form, FormControl, Nav, Navbar } from "react-bootstrap";
 import { BookFill, HouseDoorFill } from "react-bootstrap-icons";
 import logo from "../assets/img/logo.png";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { searchTracks } from "../redux/actions/searchAction";
 
 const Sidebar = () => {
+  const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(searchTracks(query));
+  };
   return (
     <aside className="col col-2">
       <Navbar expand="lg" className="navbar navbar-expand-md fixed-left justify-content-between" id="sidebar">
@@ -38,13 +48,19 @@ const Sidebar = () => {
                   </Link>
                 </li>
                 <li>
-                  <InputGroup className="mt-3">
-                    <Form.Control placeholder="Search" type="text" aria-label="Search" />
-
-                    <Button variant="outline-secondary" className="btn btn-sm ">
+                  <Form className="mt-4 d-flex" onSubmit={handleSubmit}>
+                    <div className="flex-grow-1">
+                      <FormControl
+                        type="text"
+                        placeholder="Search"
+                        className="no-rounded-right"
+                        onChange={(e) => setQuery(e.target.value)}
+                      />
+                    </div>
+                    <Button variant="outline-secondary me-3 no-rounded-left" type="submit">
                       GO
                     </Button>
-                  </InputGroup>
+                  </Form>
                 </li>
               </ul>
             </Nav>

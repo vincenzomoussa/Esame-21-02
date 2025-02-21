@@ -1,7 +1,12 @@
 import { Col, Container, Row } from "react-bootstrap";
 import Sidebar from "./Sidebar";
+import CardComponent from "./CardComponent";
+import { useSelector } from "react-redux";
 
 const MainPage = () => {
+  const isSearchOn = useSelector((state) => state.search.isSearchPerformed);
+  const searchResults = useSelector((state) => state.search.results);
+
   return (
     <Container fluid>
       <Row>
@@ -16,6 +21,8 @@ const MainPage = () => {
               <a href="#">DISCOVER</a>
             </Col>
           </Row>
+          {isSearchOn && <CardComponent artist={searchResults} />}
+
           <Row>
             <Col className="col-10">
               <div id="rock">
@@ -23,7 +30,9 @@ const MainPage = () => {
                 <Row
                   className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                   id="rockSection"
-                ></Row>
+                >
+                  <CardComponent artist="Queen" />
+                </Row>
               </div>
             </Col>
           </Row>
@@ -31,10 +40,9 @@ const MainPage = () => {
             <Col className="col-10">
               <div id="pop">
                 <h2>Pop Culture</h2>
-                <Row
-                  className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                  id="popSection"
-                ></Row>
+                <Row className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="popSection">
+                  <CardComponent artist="Katy Perry" />
+                </Row>
               </div>
             </Col>
           </Row>
@@ -45,7 +53,9 @@ const MainPage = () => {
                 <Row
                   className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                   id="hipHopSection"
-                ></Row>
+                >
+                  <CardComponent artist="Eminem" />
+                </Row>
               </div>
             </Col>
           </Row>

@@ -157,7 +157,8 @@ ul {
 
 #rock,
 #pop,
-#hiphop {
+#hiphop,
+#search {
   color: white;
   font-weight: 700;
   padding-top: 50px;
@@ -169,4 +170,8 @@ ul {
 
 .mainPage img {
   width: 200px;
+}
+
+#artistaEbrano {
+  font-size: 11px;
 }
