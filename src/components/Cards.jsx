@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { HeartFill } from "react-bootstrap-icons";
 import { addToFavourites, removeFromFavourites } from "../redux/actions/favouritesAction";
+import { PLAY_SONG } from "../redux/actions/playSongAction";
 
 const Cards = (props) => {
   const URL = "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
@@ -25,11 +26,7 @@ const Cards = (props) => {
 
   const fetchAlbums = (artist) => {
     setIsLoading(true);
-    fetch(URL + artist, {
-      headers: {
-        q: artist,
-      },
-    })
+    fetch(URL + artist)
       .then((resp) => {
         if (resp.ok) {
           return resp.json();
@@ -59,12 +56,20 @@ const Cards = (props) => {
         </Spinner>
       )}
       {album.slice(0, 4).map((song) => {
+        const handleClick1 = () => {
+          dispatch({
+            type: PLAY_SONG,
+            titlePayload: song.title,
+            artistPayload: song.artist.name,
+            urlPayload: song.album.cover_small,
+          });
+        };
         const isFavourite = favourites.find((singleSong) => singleSong.id === song.id) !== undefined;
 
         return (
           <Row className="d-flex flex-column transitionHover" key={song.id}>
             <Col style={{ cursor: "pointer" }}>
-              <img className="img-fluid " src={song.album.cover_medium} alt="track" />
+              <img className="img-fluid " src={song.album.cover_medium} alt="track" onClick={handleClick1} />
             </Col>
 
             <p className="m-0">{song.title}</p>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToFavourites, removeFromFavourites } from "../redux/actions/favouritesAction";
 import { HeartFill } from "react-bootstrap-icons";
 import NavBar from "./NavBar";
+import { PLAY_SONG } from "../redux/actions/playSongAction";
 
 const MainPage = () => {
   const isSearchPerformed = useSelector((state) => state.search.isSearchPerformed);
@@ -39,8 +40,15 @@ const MainPage = () => {
                     id="rockSection"
                   >
                     {searchResults.slice(0, 8).map((song) => {
+                      const handleClicks = () => {
+                        dispatch({
+                          type: PLAY_SONG,
+                          titlePayload: song.title,
+                          artistPayload: song.artist.name,
+                          urlPayload: song.album.small,
+                        });
+                      };
                       const isFavourite = favourites.find((singleSong) => singleSong.id === song.id) !== undefined;
-
                       return (
                         <Row className="d-flex flex-column mb-5 transitionHover" key={song.id}>
                           {isLoading && (
@@ -50,7 +58,12 @@ const MainPage = () => {
                           )}
                           {hasError && <Alert variant="danger">{"Qualcosa è andato storto."}</Alert>}
                           <Col style={{ cursor: "pointer" }}>
-                            <img className="img-fluid" src={song.album.cover_medium} alt="track" />
+                            <img
+                              className="img-fluid"
+                              src={song.album.cover_medium}
+                              alt="track"
+                              onClick={handleClicks}
+                            />
                           </Col>
 
                           <p className="m-0">{song.title}</p>

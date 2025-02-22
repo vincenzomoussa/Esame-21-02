@@ -4,9 +4,9 @@ export const searchTracks = (query) => (dispatch) => {
 
   fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`)
     .then((res) => res.json())
-    .then((data) => {
-      console.log("dati ricevuti:", data);
-      dispatch({ type: "SEARCH_SUCCESS", payload: data.data });
+    .then(({ data }) => {
+      console.log("dati ricevuti:", { data });
+      dispatch({ type: "SEARCH_SUCCESS", payload: data });
     })
     .catch((error) => {
       console.error("errore:", error);

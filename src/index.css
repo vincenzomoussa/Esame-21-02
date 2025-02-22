@@ -19,11 +19,10 @@ body {
 .navbar.fixed-left .navbar-collapse .navbar-nav a {
   color: rgb(145, 145, 145) !important;
   transition: 0.3s;
-}
-
-.navbar.fixed-left .navbar-collapse .navbar-nav a:hover {
-  color: white !important;
-  transition: 0.3s;
+  &:hover {
+    color: white !important;
+    transition: 0.3s;
+  }
 }
 
 .navbar.fixed-left .navbar-brand {
@@ -58,13 +57,12 @@ ul {
   border-radius: 20px;
   width: 180px;
   margin-bottom: 20px;
-}
-
-.signup-btn:hover {
-  color: white;
-  background-color: rgb(60, 211, 60);
-  border: 1px solid rgb(60, 211, 60);
-  transition: 0.3s;
+  &:hover {
+    color: white;
+    background-color: rgb(60, 211, 60);
+    border: 1px solid rgb(60, 211, 60);
+    transition: 0.3s;
+  }
 }
 
 .login-btn {
@@ -74,13 +72,12 @@ ul {
   border-radius: 20px;
   width: 180px;
   margin-bottom: 20px;
-}
-
-.login-btn:hover {
-  color: black;
-  background-color: rgb(60, 211, 60);
-  border: 1px solid rgb(60, 211, 60);
-  transition: 0.3s;
+  &:hover {
+    color: black;
+    background-color: rgb(60, 211, 60);
+    border: 1px solid rgb(60, 211, 60);
+    transition: 0.3s;
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -98,22 +95,20 @@ ul {
 
 .playerControls div {
   justify-content: space-between;
-}
-
-.playerControls div:first-of-type {
-  margin-left: 10%;
-  margin-right: 10%;
+  &:first-of-type {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
 }
 
 .playerControls a img {
   width: 14px;
   margin-top: 1rem;
   filter: brightness(60%);
-}
-
-.playerControls a img:hover {
-  filter: brightness(100%);
-  transition: 0.3s;
+  &:hover {
+    filter: brightness(100%);
+    transition: 0.3s;
+  }
 }
 
 .progress {
@@ -142,12 +137,11 @@ ul {
   font-size: 12px;
   opacity: 0.3;
   text-decoration: none;
-}
-
-.mainLinks a:hover {
-  text-decoration: none;
-  opacity: 1;
-  transition: 0.3s;
+  &:hover {
+    text-decoration: none;
+    opacity: 1;
+    transition: 0.3s;
+  }
 }
 
 .imgLinks a p,
@@ -186,4 +180,71 @@ ul {
 .transitionHover:hover {
   transform: scale(1.1);
   transition: transform 0.1s ease-in-out;
+}
+
+.no-rounded-right {
+  border-radius: 5px 0px 0px 5px;
+}
+.no-rounded-left {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.text-spotify-muted {
+  color: #919191;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.stroke-dotted {
+  opacity: 0;
+  stroke-dasharray: 4, 5;
+  stroke-width: 1px;
+  transform-origin: 50% 50%;
+  animation: spin 4s infinite linear;
+  transition: opacity 1s ease, stroke-width 1s ease;
+}
+.stroke-solid {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 300;
+  stroke-width: 4px;
+  transition: stroke-dashoffset 1s ease, opacity 1s ease;
+}
+
+.icon {
+  transform-origin: 50% 50%;
+  transition: transform 200ms ease-out;
+}
+
+#play:hover {
+  .stroke-dotted {
+    stroke-width: 4px;
+    opacity: 1;
+  }
+  .stroke-solid {
+    opacity: 0;
+    stroke-dashoffset: 300;
+  }
+  .icon {
+    transform: scale(1.05);
+  }
+}
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  background-color: #30ff98;
+  background: radial-gradient(#71edb5, #30ff98);
+}
+#play {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
 }
